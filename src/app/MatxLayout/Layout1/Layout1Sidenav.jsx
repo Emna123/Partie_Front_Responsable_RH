@@ -16,6 +16,9 @@ import Brand from "../SharedCompoents/Brand";
 import SidenavTheme from "../MatxTheme/SidenavTheme/SidenavTheme";
 import { isMdScreen } from "utils";
 import { merge } from "lodash";
+import { Link } from "react-router-dom";
+
+const dat={ currentTime: new Date().toLocaleString() };
 
 const styles = theme => ({});
 
@@ -31,10 +34,13 @@ const IconSmall = withStyles(() => ({
     fontSize: "1rem"
   }
 }))(Icon);
-
+const today = new Date();
+const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 class Layout1Sidenav extends Component {
+
   state = {
-    hidden: true
+    hidden: true,
+    currentDateTime: date
   };
 
   componentDidMount() {
@@ -76,7 +82,6 @@ class Layout1Sidenav extends Component {
         }
       }
     } = this.props;
-
     console.log(mode);
 
     this.updateSidebarMode({ mode: mode === "compact" ? "full" : "compact" });
@@ -105,13 +110,12 @@ class Layout1Sidenav extends Component {
     return (
       <div className="sidenav__user">
         <div className="username-photo">
-          <img src={user.photoURL} alt="user" />
+          <img src="/assets/images/i1.png" alt="user" />
         </div>
         <div className="ml-4">
           <span className="username">
             {/* <Icon>lock</Icon> */}
-            {user.displayName}
-          </span>
+            { this.state.currentDateTime }          </span>
           <div className="user__menu">
             <MatxMenu
               menuButton={
@@ -128,20 +132,16 @@ class Layout1Sidenav extends Component {
             >
               <MenuItem className="flex items-center">
                 <Icon> home </Icon>
-                <span className="pl-4"> Home </span>
+                <Link to={"/dashboard/analytics" }style={{color:'white'}}>   <span className="pl-4"> Accueil </span></Link>
               </MenuItem>
               <MenuItem className="flex items-center">
                 <Icon> settings </Icon>
-                <span className="pl-4"> Account Setting </span>
+                <Link to={"/session/forgot-password" }style={{color:'white'}}>  <span className="pl-4">Changer mot de passe  </span></Link>
               </MenuItem>
             </MatxMenu>
 
-            <Tooltip title="Profile">
-              <IconButtonWhite aria-label="Delete" className="" size="small">
-                <IconSmall>person</IconSmall>
-              </IconButtonWhite>
-            </Tooltip>
-            <Tooltip title="Sign out">
+            
+            <Tooltip title="Sign out" style={{marginLeft:10}}>
               <IconButtonWhite
                 aria-label="Delete"
                 className=""

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Icon, IconButton, MenuItem } from "@material-ui/core";
+import { Icon, IconButton, MenuItem ,Button} from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { setLayoutSettings } from "app/redux/actions/LayoutActions";
@@ -8,10 +8,9 @@ import { logoutUser } from "app/redux/actions/UserActions";
 import PropTypes from "prop-types";
 import { MatxMenu, MatxSearchBox } from "matx";
 import { isMdScreen, classList } from "utils";
-import NotificationBar from "../SharedCompoents/NotificationBar";
 import { Link } from "react-router-dom";
-import ShoppingCart from "../SharedCompoents/ShoppingCart";
-
+import history from "history.js";
+import NotificationBar from "../SharedCompoents/NotificationBar";
 const styles = theme => ({
   topbar: {
     "& .topbar-hold": {
@@ -81,12 +80,10 @@ class Layout1Topbar extends Component {
               </IconButton>
 
               <div className="hide-on-mobile">
-                <IconButton>
-                  <Icon>mail_outline</Icon>
-                </IconButton>
+             
 
                 <IconButton>
-                  <Icon>web_asset</Icon>
+                  <Icon>home</Icon>
                 </IconButton>
 
                 <IconButton>
@@ -95,17 +92,17 @@ class Layout1Topbar extends Component {
               </div>
             </div>
             <div className="flex items-center">
-              <MatxSearchBox />
 
-              <NotificationBar />
-
-              <ShoppingCart></ShoppingCart>
+            <div className="flex items-center" style={{height:'100%',marginTop:-20}}>
+            <Button  style={{fontSize: "1rem", marginTop: '20px',marginRight:'30px'}} onClick ={ (event, v) =>{ history.push({ pathname: "/recrutement/Offre/AddRecrutement"})}} ><Icon style={{fontSize: "1rem",color:'#F59D62'}}> add </Icon><br></br><span style={{fontSize:'12px'}} >Créer un<br></br> recrutement</span></Button>
+           
+</div>
 
               <MatxMenu
                 menuButton={
                   <img
                     className="mx-2 align-middle circular-image-small cursor-pointer"
-                    src="/assets/images/face-6.jpg"
+                    src="/assets/images/i1.png"
                     alt="user"
                   />
                 }
@@ -113,28 +110,21 @@ class Layout1Topbar extends Component {
                 <MenuItem>
                   <Link className={classes.menuItem} to="/">
                     <Icon> home </Icon>
-                    <span className="pl-4"> Home </span>
+                    <span className="pl-4"> Accueil </span>
                   </Link>
                 </MenuItem>
-                <MenuItem>
-                  {/* <Link
-                    className={classes.menuItem}
-                    to="/page-layouts/user-profile"
-                  > */}
-                  <Icon> person </Icon>
-                  <span className="pl-4"> Profile </span>
-                  {/* </Link> */}
-                </MenuItem>
+            
                 <MenuItem className={classes.menuItem}>
                   <Icon> settings </Icon>
-                  <span className="pl-4"> Settings </span>
+                  <Link to={"/session/forgot-password" }style={{color:'white'}}>  <span className="pl-4">Changer mot de passe  </span></Link>
+
                 </MenuItem>
                 <MenuItem
                   onClick={this.handleSignOut}
                   className={classes.menuItem}
                 >
                   <Icon> power_settings_new </Icon>
-                  <span className="pl-4"> Logout </span>
+                  <span className="pl-4"> Se déconnecter </span>
                 </MenuItem>
               </MatxMenu>
             </div>

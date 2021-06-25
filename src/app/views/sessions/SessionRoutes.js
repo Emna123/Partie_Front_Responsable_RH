@@ -1,7 +1,9 @@
-import SignUp from "./SignUp";
 import SignIn from "./SignIn";
 import NotFound from "./NotFound";
 import ForgotPassword from "./ForgotPassword";
+import ResetPass from "./ResetPass";
+import ResetPassword from "./ResetPassword";
+import {PostData} from '../../services/PostData';
 
 const settings = {
   activeLayout: "layout1",
@@ -26,11 +28,7 @@ const settings = {
 };
 
 const sessionRoutes = [
-  {
-    path: "/session/signup",
-    component: SignUp,
-    settings
-  },
+ 
   {
     path: "/session/signin",
     component: SignIn,
@@ -39,6 +37,17 @@ const sessionRoutes = [
   {
     path: "/session/forgot-password",
     component: ForgotPassword,
+    settings
+  },
+  {
+    path: "/session/resetpass",
+    component: ResetPass,
+    settings
+  },
+  {
+    path: "/session/resetpassword/:id"
+    ,
+    component: ResetPassword,
     settings
   },
   {

@@ -30,15 +30,17 @@ RichTextEditor.modules = {
     [{ header: [1, 2, 3, 4, 5, 6, false] }],
 
     ["bold", "italic", "underline", "strike"], // toggled buttons
-    ["blockquote", "code-block", "link"],
+    ["blockquote", "code-block"],
 
-    [{ script: "sub" }, { script: "super" }], // superscript/subscript
+    [{ script: "sub" }, { script: "super" }],
+    [], // superscript/subscript
     [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-    [{ align: [] }],
 
-    ["image", "video"],
+  
 
     [{ header: 1 }, { header: 2 }], // custom button values
+    [{ align: [] }],
+
     [{ list: "ordered" }, { list: "bullet" }],
     [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
     [{ direction: "rtl" }], // text direction
@@ -70,14 +72,14 @@ RichTextEditor.formats = [
   "header",
   "italic",
   "indent",
-  "image",
+
   "list",
-  "link",
+  
   "size",
   "strike",
   "script",
   "underline",
-  "video"
+  
 ];
 
 /*

@@ -6,7 +6,6 @@ import { setUserData } from "../redux/actions/UserActions";
 import { getNavigationByUser } from "../redux/actions/NavigationAction";
 import jwtAuthService from "../services/jwtAuthService";
 import localStorageService from "../services/localStorageService";
-// import firebaseAuthService from "../services/firebase/firebaseAuthService";
 import history from "history.js";
 
 const checkJwtAuth = async setUserData => {

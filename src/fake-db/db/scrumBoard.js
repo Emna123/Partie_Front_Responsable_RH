@@ -12,7 +12,7 @@ const ScrumBoardDB = {
       list: [
         {
           id: shortId.generate(),
-          title: "Drag and Drop",
+          title: "Recrutement",
           cardList: [
             {
               id: shortId.generate(),
@@ -154,7 +154,7 @@ const ScrumBoardDB = {
       list: [
         {
           id: shortId.generate(),
-          title: "Drag and Drop",
+          title: "Recrutement",
           cardList: [
             {
               id: shortId.generate(),

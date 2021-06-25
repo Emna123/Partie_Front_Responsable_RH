@@ -37,7 +37,7 @@ class NotFound extends Component {
             color="primary"
             onClick={() => this.props.history.push("/")}
           >
-            Back to Dashboard
+Aller à la page d'accueil
           </Button>
         </div>
       </div>

@@ -15,7 +15,6 @@ const defaultOption = {
     trigger: "axis",
 
     axisPointer: {
-      type: "cross",
       lineStyle: {
         opacity: 0
       }
@@ -52,11 +51,11 @@ const defaultOption = {
   },
   yAxis: {
     type: "value",
-    min: 10,
-    max: 60,
+    min: 5,
+    max: 800,
     axisLabel: {
       color: "#ccc",
-      margin: 20,
+      margin: 2,
       fontSize: 13,
       fontFamily: "roboto",
     },
@@ -97,6 +96,9 @@ const defaultOption = {
 };
 
 const ModifiedAreaChart = ({ height, option }) => {
+  if(option.min>5)
+  {defaultOption.yAxis.min=option.min;}
+  defaultOption.yAxis.max=option.max;
   return (
     <ReactEcharts
       style={{ height: height }}

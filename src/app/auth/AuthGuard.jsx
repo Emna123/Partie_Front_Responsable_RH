@@ -31,13 +31,24 @@ const AuthGuard = ({ children, ...props }) => {
   let [authenticated, setAuthenticated] = useState(
     getAuthStatus(props, routes)
   );
-
+  const getCont = () => {
+    var auth=false ;
+    if(localStorage.length !=0 && localStorage.getItem('access_token') != ""
+       && localStorage.getItem('UserEmail') != ""
+      ){
+         auth= true
+    
+       }
+       return auth
+    
+      }
+    
   useEffect(() => {
-    if (!authenticated) {
+    if (!authenticated || getCont()==false) {
       redirectRoute(props);
     }
     setAuthenticated(getAuthStatus(props, routes));
-  }, [setAuthenticated, authenticated, routes, props]);
+  }, []);
 
   return authenticated ? <Fragment>{children}</Fragment> : null;
 };

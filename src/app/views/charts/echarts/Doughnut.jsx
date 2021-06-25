@@ -2,7 +2,7 @@ import React from "react";
 import ReactEcharts from "echarts-for-react";
 import { withStyles } from "@material-ui/styles";
 
-const DoughnutChart = ({ height, color = [], theme }) => {
+const DoughnutChart = ({ height, color = [], theme,   accepte,preselectionne,rejete}) => {
   const option = {
     legend: {
       show: true,
@@ -78,14 +78,14 @@ const DoughnutChart = ({ height, color = [], theme }) => {
         },
         data: [
           {
-            value: 65,
-            name: "Google"
+            value:  accepte,
+            name: "Pré accepté"
           },
           {
-            value: 20,
-            name: "Facebook"
+            value: preselectionne,
+            name: "Présélectionné"
           },
-          { value: 15, name: "Others" }
+          { value: rejete, name: "Rejeté" }
         ],
         itemStyle: {
           emphasis: {

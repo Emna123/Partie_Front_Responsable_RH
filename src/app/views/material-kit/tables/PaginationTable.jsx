@@ -139,10 +139,10 @@ const PaginationTable = () => {
         rowsPerPage={rowsPerPage}
         page={page}
         backIconButtonProps={{
-          "aria-label": "Previous Page"
+          "aria-label": "Page Précédente"
         }}
         nextIconButtonProps={{
-          "aria-label": "Next Page"
+          "aria-label": "Page Suivante"
         }}
         onChangePage={handleChangePage}
         onChangeRowsPerPage={handleChangeRowsPerPage}

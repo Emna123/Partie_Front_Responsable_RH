@@ -29,6 +29,7 @@ const Loading = props => {
 
   return (
     <div className={classes.loading}>
+      
       <img src="/assets/images/logo-circle.svg" alt="" />
       <CircularProgress />
     </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, Card, Icon, IconButton, Tooltip } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
+import history from "history.js";
 
 const styles = theme => ({
   icon: {
@@ -10,7 +11,7 @@ const styles = theme => ({
   }
 });
 
-const StatCards = ({ classes }) => {
+const StatCards = ({ classes ,nbrcandidats,nbroffres}) => {
   return (
     <Grid container spacing={3} className="mb-3">
       <Grid item xs={12} md={6}>
@@ -18,12 +19,12 @@ const StatCards = ({ classes }) => {
           <div className="flex items-center">
             <Icon className={classes.icon}>group</Icon>
             <div className="ml-3">
-              <small className="text-muted">New Leads</small>
-              <h6 className="m-0 mt-1 text-primary font-medium">3050</h6>
+              <small className="text-muted">Nombre de candidats </small>
+              <h6 className="m-0 mt-1 text-primary font-medium">{nbrcandidats}</h6>
             </div>
           </div>
-          <Tooltip title="View Details" placement="top">
-            <IconButton>
+          <Tooltip title="Voir Détails" placement="top">
+            <IconButton onClick={e=>{ history.push('/recrutement/toutescandidats');}}>
               <Icon>arrow_right_alt</Icon>
             </IconButton>
           </Tooltip>
@@ -32,53 +33,21 @@ const StatCards = ({ classes }) => {
       <Grid item xs={12} md={6}>
         <Card className="play-card p-sm-24 bg-paper" elevation={6}>
           <div className="flex items-center">
-            <Icon className={classes.icon}>attach_money</Icon>
+            <Icon className={classes.icon}>business_center</Icon>
             <div className="ml-3">
-              <small className="text-muted">This week Sales</small>
-              <h6 className="m-0 mt-1 text-primary font-medium">$80,500</h6>
+              <small className="text-muted">Nombre d'offres</small>
+              <h6 className="m-0 mt-1 text-primary font-medium">{nbroffres}</h6>
             </div>
           </div>
-          <Tooltip title="View Details" placement="top">
-            <IconButton>
+          <Tooltip title="Voir Détails" placement="top">
+            <IconButton onClick={e=>{      history.push('/recrutement/offres');}}>
               <Icon>arrow_right_alt</Icon>
             </IconButton>
           </Tooltip>
         </Card>
       </Grid>
-      <Grid item xs={12} md={6}>
-        <Card className="play-card p-sm-24 bg-paper" elevation={6}>
-          <div className="flex items-center">
-            <Icon className={classes.icon}>store</Icon>
-            <div className="ml-3">
-              <small className="text-muted">Inventory Status</small>
-              <h6 className="m-0 mt-1 text-primary font-medium">
-                8.5% Stock Surplus
-              </h6>
-            </div>
-          </div>
-          <Tooltip title="View Details" placement="top">
-            <IconButton>
-              <Icon>arrow_right_alt</Icon>
-            </IconButton>
-          </Tooltip>
-        </Card>
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <Card className="play-card p-sm-24 bg-paper" elevation={6}>
-          <div className="flex items-center">
-            <Icon className={classes.icon}>shopping_cart</Icon>
-            <div className="ml-3">
-              <small className="text-muted">Orders to deliver</small>
-              <h6 className="m-0 mt-1 text-primary font-medium">305 Orders</h6>
-            </div>
-          </div>
-          <Tooltip title="View Details" placement="top">
-            <IconButton>
-              <Icon>arrow_right_alt</Icon>
-            </IconButton>
-          </Tooltip>
-        </Card>
-      </Grid>
+    
+   
     </Grid>
   );
 };

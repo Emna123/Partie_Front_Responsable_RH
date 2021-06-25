@@ -1,10 +1,10 @@
 export const navigations = [
   {
-    name: "Dashboard",
+    name: "Accueil",
     path: "/dashboard/analytics",
     icon: "dashboard"
-  },
-  {
+  },/*
+{
     name: "Forms",
     icon: "description",
     children: [
@@ -19,12 +19,18 @@ export const navigations = [
         iconText: "E"
       }
     ]
+  },*/
+  {
+    name: "Recrutement",
+    icon: "description",
+    path: "/recrutement/offres"
   },
   {
-    name: "Drag and Drop",
-    icon: "control_camera",
-    path: "/others/drag-and-drop"
+    name: "Candidats",
+    icon: "assignment_ind",
+    path: "/recrutement/toutescandidats"
   },
+  /*
   {
     name: "Multilevel",
     icon: "trending_up",
@@ -83,32 +89,7 @@ export const navigations = [
       }
     ]
   },
-  {
-    name: "Sessions",
-    icon: "trending_up",
-    children: [
-      {
-        name: "Sign in",
-        iconText: "SI",
-        path: "/session/signin"
-      },
-      {
-        name: "Sign up",
-        iconText: "SU",
-        path: "/session/signup"
-      },
-      {
-        name: "Forgot password",
-        iconText: "FP",
-        path: "/session/forgot-password"
-      },
-      {
-        name: "Error",
-        iconText: "404",
-        path: "/session/404"
-      }
-    ]
-  },
+  
 
   {
     name: "UI Kits",
@@ -192,5 +173,5 @@ export const navigations = [
     name: "Map",
     icon: "add_location",
     path: "/map"
-  }
+  }*/
 ];

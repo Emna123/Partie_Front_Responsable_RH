@@ -6,7 +6,7 @@ import utilitiesRoutes from "./views/utilities/UtilitiesRoutes";
 import sessionRoutes from "./views/sessions/SessionRoutes";
 
 import materialRoutes from "./views/material-kit/MaterialRoutes";
-import dragAndDropRoute from "./views/Drag&Drop/DragAndDropRoute";
+import recrutementRoute from "./views/Recrutement/RecrutementRoute";
 
 import formsRoutes from "./views/forms/FormsRoutes";
 import mapRoutes from "./views/map/MapRoutes";
@@ -29,10 +29,10 @@ const routes = [
   ...sessionRoutes,
   ...dashboardRoutes,
   ...materialRoutes,
-  ...utilitiesRoutes,
-  ...dragAndDropRoute,
-  ...formsRoutes,
-  ...mapRoutes,
+  /*...utilitiesRoutes,*/
+  ...recrutementRoute,
+  /*...formsRoutes,*/
+  /*...mapRoutes,*/
   ...redirectRoute,
   ...errorRoute
 ];

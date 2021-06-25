@@ -98,24 +98,6 @@ const MatxCustomizer = props => {
           theme: "slateDark1"
         }
       }
-    },
-    {
-      name: "Horizontal Navigation",
-      thumbnail: "/assets/images/screenshots/layout4-customizer.png",
-      isPro: true,
-      options: {
-        activeLayout: "layout2",
-        activeTheme: "purple1",
-        layout2Settings: {
-          mode: "full"
-          // topbar: {
-          //   theme: "slateDark1"
-          // }
-        },
-        footer: {
-          theme: "slateDark1"
-        }
-      }
     }
   ];
 
@@ -156,10 +138,10 @@ const MatxCustomizer = props => {
           className="my-3"
           onClick={tooglePanel}
         >
+
           <Icon className="spin">settings</Icon>
         </IconButton>
       </Tooltip>
-
       {open && (
         <ThemeProvider theme={activeTheme}>
           <div

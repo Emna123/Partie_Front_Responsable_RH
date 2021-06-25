@@ -3,15 +3,12 @@ import localStorageService from "./localStorageService";
 
 class JwtAuthService {
 
+
   // Dummy user object just for the demo
   user = {
-    userId: "1",
-    role: 'ADMIN',
-    displayName: "Jason Alexander",
-    email: "jasonalexander@gmail.com",
-    photoURL: "/assets/images/face-6.jpg",
-    age: 25,
-    token: "faslkhfh423oiu4h4kj432rkj23h432u49ufjaklj423h4jkhkjh"
+    userId: "414a0fd6-167b-4bb2-a992-7a1834ed12d4",
+    email: localStorage.getItem('UserEmail'),
+    token: localStorage.getItem('access_token')
   }
 
   // You need to send http request with email and passsword to your server in this method
@@ -49,6 +46,8 @@ class JwtAuthService {
   };
 
   logout = () => {
+    localStorage.clear();
+
     this.setSession(null);
     this.removeUser();
   }

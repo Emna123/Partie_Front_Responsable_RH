@@ -40,7 +40,7 @@ const NotificationBar = props => {
   const parentThemePalette = theme.palette;
 
   return (
-    <ThemeProvider theme={settings.themes[settings.activeTheme]}>
+    <ThemeProvider theme={settings.themes[settings.activeTheme]}  width={"50%"} >
       <IconButton
         onClick={handleDrawerToggle}
         style={{
@@ -56,7 +56,7 @@ const NotificationBar = props => {
       </IconButton>
 
       <Drawer
-        width={"100px"}
+        width={"100%"}
         container={container}
         variant="temporary"
         anchor={"right"}
@@ -66,61 +66,13 @@ const NotificationBar = props => {
           keepMounted: true
         }}
       >
-        <div className="notification">
+        <div className="notification" >
           <div className="notification__topbar flex items-center p-4 mb-4">
             <Icon color="primary">notifications</Icon>
             <h5 className="ml-2 my-0 font-medium">Notifications</h5>
           </div>
 
-          {notifcationList.map(notification => (
-            <div
-              key={notification.id}
-              className="notification__card position-relative"
-            >
-              <IconButton
-                size="small"
-                className="delete-button bg-light-gray mr-6"
-                onClick={() => deleteNotification(notification.id)}
-              >
-                <Icon className="text-muted" fontSize="small">
-                  clear
-                </Icon>
-              </IconButton>
-              <Link to={`/${notification.path}`} onClick={handleDrawerToggle}>
-                <Card className="mx-4 mb-6" elevation={3}>
-                  <div className="card__topbar flex items-center justify-between p-2 bg-light-gray">
-                    <div className="flex items-center">
-                      <div className="card__topbar__button">
-                        <Icon
-                          className="card__topbar__icon"
-                          fontSize="small"
-                          color={notification.icon.color}
-                        >
-                          {notification.icon.name}
-                        </Icon>
-                      </div>
-                      <span className="ml-4 font-medium text-muted">
-                        {notification.heading}
-                      </span>
-                    </div>
-                    <small className="card__topbar__time text-muted">
-                      {getTimeDifference(new Date(notification.timestamp))} ago
-                    </small>
-                  </div>
-                  <div className="px-4 pt-2 pb-4">
-                    <p className="m-0">{notification.title}</p>
-                    <small className="text-muted">
-                      {notification.subtitle}
-                    </small>
-                  </div>
-                </Card>
-              </Link>
-            </div>
-          ))}
 
-          <div className="text-center">
-            <Button onClick={deleteAllNotification}>Clear Notifications</Button>
-          </div>
         </div>
       </Drawer>
     </ThemeProvider>
