@@ -1,5 +1,4 @@
 import IconButton from "@material-ui/core/IconButton";
-import MenuItem from "@material-ui/core/MenuItem";
 import {
   Icon, Button, FormControlLabel,
   Checkbox
@@ -14,7 +13,6 @@ import { green } from "@material-ui/core/colors";
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 
-import './AppRecrutement.css'
 import { withStyles } from "@material-ui/core/styles";
 
 import React, { Component, useEffect, useState, updateState } from 'react';
@@ -126,14 +124,14 @@ function Examen() {
 
   return (
 
-    <div style={{ marginBottom: '8%', backgroundColor: 'none', textAlign: 'center' }} className='container'>
-      <h5 style={{ textAlign: 'center', marginTop: '2%', fontSize: 18 }}>Créer un examen</h5>
-      <div className="card" style={{ width: "100%", textAlign: 'center', marginTop: '2%', padding: "0.9%", paddingTop: '0%', paddingBottom: '0%' }} >
+    <div style={{ marginBottom: '8%', backgroundColor: 'white', textAlign: 'center' }} className='container'>
+      <h5 style={{ backgroundColor: 'white',textAlign: 'center', marginTop: '2%', fontSize: 18 }}>Créer un examen</h5>
+      <div className="card" style={{ backgroundColor: 'white',width: "100%", textAlign: 'center', marginTop: '2%', padding: "0.9%", paddingTop: '0%', paddingBottom: '0%' }} >
 
         <ExemainInfo exinfo={exinfo} setexinfo={setexinfo}  ></ExemainInfo>
       </div>
       <br></br><br></br><br></br>
-      <div className={classes.root} style={{ borderColor: 'transparent', textAlign: 'center', width: '75%' }} className='container' >
+      <div className={classes.root} style={{ borderColor: 'transparent', textAlign: 'center', width: '75%',backgroundColor:'white' }} className='container' >
         <ExpansionPanel style={{
         }}>
           <ExpansionPanelSummary
@@ -141,7 +139,7 @@ function Examen() {
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
-            <Typography className={classes.heading} className='container' style={{ fontSize: 18 }}>Choisir des questions trouvées dans d'autres examens</Typography>
+            <Typography className={classes.heading} className='container' style={{ fontSize: 18,background:'white' }}>Choisir des questions trouvées dans d'autres examens</Typography>
           </ExpansionPanelSummary>
           <br></br>
 
@@ -329,9 +327,24 @@ function Examen() {
 
             }
             else {
+              const verifte =  (repinfo) => {
+               var test =false;
+              for (var i=0;i<repinfo.length;i++)
+              {
+                    if(repinfo[i].chec !=false)
+                    {
+                        test=true
+                    }
+              }
+                  return test
+              }
               var test = false;
               var indx = -1;
+              var indx1 = -1;
               var i = 0;
+              var i1=0;
+              var test1=false
+
               while (i < questinfo.length && test == false) {
                 if (questinfo[i].question === "" || questinfo[i].repinfo == 0) {
                   test = true;
@@ -339,12 +352,28 @@ function Examen() {
                 }
                 i++
               }
+
+
+              while (i1 < questinfo.length && test1 == false) {
+              
+
+                  if (verifte(questinfo[i1].repinfo)==false) {
+                    test1 = true;
+                    indx1 = i1;
+                  }
+                  i1++
+                }
+
               if (test == true) {
                 setmes("le question numéro " + (indx + 1) + " dois avoir au moins une réponse , un question et une note ");
                 setopenn(true)
 
               }
+             else if (test1 ==true ) {
+                setmes("le question numéro " + (indx1 + 1) + " dois avoir au moins une réponse correcte  "+" ");
+                setopenn(true)
 
+              }                      
               else if ((questinfo.length + nb) < exinfo.nombreq) {
                 console.log('nb', nb, oldquest)
                 setmes("Le nombre de questions est incorrect, veuillez ajouter au moins " + (exinfo.nombreq - (questinfo.length + nb)) + " questions ou modifier le nombre de questions à sélectionner.")

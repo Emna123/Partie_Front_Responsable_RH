@@ -5,7 +5,10 @@ import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import { makeStyles } from "@material-ui/core/styles";
 import axios from 'axios';
+import '../AppOffre.css'
 
+import './AppRecrutement.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import {
@@ -62,6 +65,8 @@ class ModifinformationOptionnel extends Component {
 
     authAxios.get('Offre/getOffre/' + id).then((res) => {
       console.log('offre', res.data.diplome)
+      this.props.setValidiplome([])
+      this.props.setInfoop({ 'diplome': [] })
 
       for (var i = 0; i < res.data.diplome.length; i++) {
         var type = ""
@@ -71,6 +76,8 @@ class ModifinformationOptionnel extends Component {
         else { type = 'Optionnel'; }
         this.props.valDiplome.push({ titre: res.data.diplome[i].titre, description: res.data.diplome[i].description, type: type, id: i, iddivh: 'd1h' + i, iddiv: "ds1" + i, d1: "d1" + i, b: true, del: false, idbase: res.data.diplome[i].id })
       }
+
+      this.setState({ 'diplome': [] })
 
       for (var i = 0; i < res.data.diplome.length; i++) {
 
@@ -93,6 +100,10 @@ class ModifinformationOptionnel extends Component {
       this.props.setInfoop({ 'diplome': [...this.props.infoop.diplome] })
 
       //Questionnaire
+      this.props.setdataquestionnaire([])
+      this.setState({ 'questionnaire': [] })
+      this.props.setInfoop1({ 'questionnaire': [] })
+
       for (var i = 0; i < res.data.questionnaire.length; i++) {
         var type = ""
         if (res.data.questionnaire[i].require == true) {
@@ -122,6 +133,11 @@ class ModifinformationOptionnel extends Component {
       this.props.setInfoop1({ 'questionnaire': [...this.props.infoop1.questionnaire] })
 
 //Competance
+this.setState({ 'competance': [] })
+this.props.setdatacompetance([])
+this.props.setInfoop2({ 'competance': [] })
+
+
 for (var i = 0; i < res.data.competence.length; i++) {
   var type = ""
   if (res.data.competence[i].require == true) {
@@ -147,6 +163,10 @@ this.props.setdatacompetance([...this.props.datacompetance])
 this.props.setInfoop2({ 'competance': [] })
 this.props.setInfoop2({ 'competance': [...this.props.infoop2.competance] })
 //Langue
+this.setState({ 'langue': [] })
+this.props.setdatalangue([])
+this.props.setInfoop3({ 'langue': [] })
+
 for (var i = 0; i < res.data.langue.length; i++) {
   var type = ""
   if (res.data.langue[i].require == true) {
@@ -341,7 +361,7 @@ this.props.setInfoop3({ 'langue': [...this.props.infoop3.langue] })
                               l = i
                             }
                           }
-
+                         console.log("llll",l)
 
                           if (l == -1) {
                             this.props.setPasse(false)
@@ -361,7 +381,7 @@ this.props.setInfoop3({ 'langue': [...this.props.infoop3.langue] })
 
 
 
-                            authAxios.delete('/Diplome/DeleteDiplome/' + this.props.valDiplome[l].idbase)
+                            authAxios.delete('Diplome/DeleteDiplome/' + this.props.valDiplome[l].idbase)
 
 
 
@@ -487,6 +507,7 @@ this.props.setInfoop3({ 'langue': [...this.props.infoop3.langue] })
 
 
                           else {
+                            console.log("llll",'Diplome/DeleteDiplome/' + this.props.valDiplome[l].idbase)
 
 
                             authAxios.delete('Diplome/DeleteDiplome/' + this.props.valDiplome[l].idbase)
@@ -642,9 +663,9 @@ this.props.setInfoop3({ 'langue': [...this.props.infoop3.langue] })
 
                           else {
 
+                            console.log('ppppppppp',this.props.datacompetance[l].idbase)
 
-
-                            authAxios.delete('Competence/DeleteCompetence/' + this.props.datacompetance[l].idbase)
+                            authAxios.delete('Competence/DeleteOffreCompetence/' + this.props.datacompetance[l].idbase)
 
 
 
@@ -779,8 +800,9 @@ this.props.setInfoop3({ 'langue': [...this.props.infoop3.langue] })
 
                                 else {
 
+                                  console.log('ppppppppp','Competence/DeleteOffreCompetence/' + this.props.datacompetance[l].idbase)
 
-                                  authAxios.delete('Competence/DeleteCompetence/' + this.props.datacompetance[l].idbase)
+                                  authAxios.delete('Competence/DeleteOffreCompetence/' + this.props.datacompetance[l].idbase)
 
 
 

@@ -4,6 +4,8 @@ import { TextField, InputAdornment, IconButton } from "@material-ui/core";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import { makeStyles } from "@material-ui/core/styles";
+import './AppRecrutement.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import {
   Button,
@@ -27,6 +29,7 @@ import Competance from "./Competance";
 import Langue from "./Langue";
 import Questionnaire from "./Questionnaire";
 import { TimerSharp, ViewArrayOutlined } from "@material-ui/icons";
+import '../AppOffre.css'
 
 const useStyles = makeStyles((theme) => ({
 

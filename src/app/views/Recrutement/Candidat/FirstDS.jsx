@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 const FirstDS = (props) => {
- 
+
 
   const items = [];
 
@@ -47,7 +47,7 @@ const FirstDS = (props) => {
 
         <div className="card profile-card-2 shadow p-3 mb-5 bg-white rounded box ">
 
-     
+
           <div className="row" style={{ margin: 0, padding: 0 }}>
 
             <div className="col-3" style={{ marginRight: '10%' }}>
@@ -68,17 +68,52 @@ const FirstDS = (props) => {
             <div style={{ textAlign: 'center', padding: 0 }} className="col-6">
               <div style={{ lineHeight: 2 }} style={{ textAlign: 'center', width: '100%' }}>
                 <h5 className='t1'><Icon style={{ fontSize: "12px" }}> grade </Icon><Icon style={{ fontSize: "12px" }}> grade </Icon><Icon style={{ fontSize: "12px" }}> grade </Icon><Icon style={{ fontSize: "12px" }}> grade </Icon><Icon style={{ fontSize: "12px" }}> grade </Icon>                                   </h5>
+                {value.metier != null ? (
+                  <div className='t1' style={{ fontSize: "12px", fontWeight: 'bold' }}>
+                    {value.metier}
+                  </div >) : (
+                  <div className='t1' style={{ fontSize: "12px", fontWeight: 'bold' }}>
+                    Indéfini
+                  </div >
+                )}
 
-                <div className='t1' style={{ fontSize: "12px", fontWeight: 'bold' }}>
-                  {value.metier}
-                </div >
+
                 <div className='t1' style={{ color: '#515A5A', fontSize: "12px" }}>{value.nom} {value.prenom}</div >
-              
-                <div className='t1' style={{ color: '#999999', fontSize: "12px" }}>{(new Date().getFullYear()) - (new Date(value.date_naissance).getFullYear())} ans ,{value.etat_matrimonial} </div >
 
-                <div className='t1' style={{ color: '#999999', fontSize: "12px" }}><Icon style={{ fontSize: "12px", marginRight: 6 }}> call </Icon> {value.phoneNumber}</div >
-                <div className='t1' style={{ color: '#999999', fontSize: "12px", display: 'block', whiteSpace: 'nowrap' }} ><Icon style={{ fontSize: "12px", marginRight: 6 }}> contact_mail </Icon>  {value.email}</div >
-                <div className='t1' style={{ color: '#999999', fontSize: "12px", display: 'block', whiteSpace: 'nowrap' }}><Icon style={{ fontSize: "12px" }}> room </Icon> <span style={{ color: '#707B7C', fontSize: "12px" }}>{value.adresse}</span></div >
+                {value.date_naissance != null ? (
+                  <div className='t1' style={{ color: '#999999', fontSize: "12px" }}>{(new Date().getFullYear()) - (new Date(value.date_naissance).getFullYear())} ans ,{value.etat_matrimonial} </div >
+                ) : (
+                  <div className='t1' style={{ color: '#999999', fontSize: "12px" }}> Indéfini</div >
+
+
+                )}
+
+
+                {value.phoneNumber != null ? (
+                  <div className='t1' style={{ color: '#999999', fontSize: "12px" }}><Icon style={{ fontSize: "12px", marginRight: 6 }}> call </Icon> {value.phoneNumber}</div >
+                ) : (
+                  <div className='t1' style={{ color: '#999999', fontSize: "12px" }}><Icon style={{ fontSize: "12px", marginRight: 6 }}> call </Icon> Indéfini</div >
+
+
+
+                )}
+
+
+                {value.email != null ? (
+                  <div className='t1' style={{ color: '#999999', fontSize: "12px", display: 'block', whiteSpace: 'nowrap' }} ><Icon style={{ fontSize: "12px", marginRight: 6 }}> contact_mail </Icon>  {value.email}</div >
+                ) : (
+
+                  <div className='t1' style={{ color: '#999999', fontSize: "12px", display: 'block', whiteSpace: 'nowrap' }} ><Icon style={{ fontSize: "12px", marginRight: 6 }}> contact_mail </Icon>  Indéfini</div >
+
+                )}
+
+                {value.adresse != null ? (
+                  <div className='t1' style={{ color: '#999999', fontSize: "12px", display: 'block', whiteSpace: 'nowrap' }}><Icon style={{ fontSize: "12px" }}> room </Icon> <span style={{ color: '#707B7C', fontSize: "12px" }}>{value.adresse}</span></div >
+                ) : (
+
+                  <div className='t1' style={{ color: '#999999', fontSize: "12px", display: 'block', whiteSpace: 'nowrap' }} ><Icon style={{ fontSize: "12px" }}> room </Icon>  Indéfini</div >
+
+                )}
 
               </div >
 

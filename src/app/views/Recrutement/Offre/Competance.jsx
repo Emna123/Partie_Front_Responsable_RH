@@ -7,7 +7,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import {suggestions} from "./indiceCompetance"
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './AppRecrutement.css'
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import {
   Button,

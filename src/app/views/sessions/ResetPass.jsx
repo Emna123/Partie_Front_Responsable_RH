@@ -67,7 +67,7 @@ class ResetPass extends Component {
         'Content-type':'application/json'},
         body: JSON.stringify({
           Email:"areaehirer.recrutement@gmail.com",
-          mdp:this.state.password,
+          password:this.state.password,
           code:this.state.result
         })
         }).then(data => data.json())

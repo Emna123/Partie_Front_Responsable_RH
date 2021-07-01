@@ -42,9 +42,9 @@ export default function StepperForm() {
       case 0:
         return <SimpleForm setdisb={setdisb} setOffre={setOffre} offre={offre} ></SimpleForm>
       case 1:
-        return <InformationOptionnel indicel={indicel} setIndicel={setIndicel} datalangue={datalangue} passe4={passe4} setPasse4={setPasse4} setdatalangue={setdatalangue} infoop3={infoop3} setInfoop3={setInfoop3} infoop2={infoop2} setInfoop2={setInfoop2} indicec={indicec} setIndicec={setIndicec} passe3={passe3} setPasse3={setPasse3} datacompetance={datacompetance} setdatacompetance={setdatacompetance} infoop1={infoop1} setInfoop1={setInfoop1} setidq={setidq} dataquestionnaire={dataquestionnaire} setdataquestionnaire={setdataquestionnaire} forceUpdate={forceUpdate} passe={passe} passe2={passe2} setPasse2={setPasse2} setPasse={setPasse} infoop={infoop} setInfoop={setInfoop} setIndice={setIndice} setIndiceq={setIndiceq} indice={indice} indiceq={indiceq} hand={hand} st2={st2} setSt2={setSt2} valDiplome={valDiplome} setValidiplome={setValidiplome} ></InformationOptionnel>;
+        return <InformationOptionnel  indicel={indicel} setIndicel={setIndicel} datalangue={datalangue} passe4={passe4} setPasse4={setPasse4} setdatalangue={setdatalangue} infoop3={infoop3} setInfoop3={setInfoop3} infoop2={infoop2} setInfoop2={setInfoop2} indicec={indicec} setIndicec={setIndicec} passe3={passe3} setPasse3={setPasse3} datacompetance={datacompetance} setdatacompetance={setdatacompetance} infoop1={infoop1} setInfoop1={setInfoop1} setidq={setidq} dataquestionnaire={dataquestionnaire} setdataquestionnaire={setdataquestionnaire} forceUpdate={forceUpdate} passe={passe} passe2={passe2} setPasse2={setPasse2} setPasse={setPasse} infoop={infoop} setInfoop={setInfoop} setIndice={setIndice} setIndiceq={setIndiceq} indice={indice} indiceq={indiceq} hand={hand} st2={st2} setSt2={setSt2} valDiplome={valDiplome} setValidiplome={setValidiplome} ></InformationOptionnel>;
       case 2:
-        return <EditorForm description={description} setdescription={setdescription}  ></EditorForm>;
+        return <EditorForm setdisb={setdisb}  description={description} setdescription={setdescription}  ></EditorForm>;
 
     }
   }
@@ -94,6 +94,8 @@ export default function StepperForm() {
   const [passe3, setPasse3] = useState(true)
   const [passe4, setPasse4] = useState(true)
   const [idoffre, setidoffre] = useState(true)
+
+  const [decdetdis, setdecdetdis] = useState(true)
 
 
   const [idq, setidq] = useState(-1)
@@ -312,7 +314,14 @@ export default function StepperForm() {
 
 
 
+                               if(description=="" && activeStep==1) {setActiveStep(prevActiveStep => prevActiveStep + 1)
+                                setdisb(true)
+                              }
+                              else{
                                 setActiveStep(prevActiveStep => prevActiveStep + 1);
+                                setdisb(false)
+
+                              }
                               }}
                             >
                               {activeStep === steps.length - 1 ? "Fin" : "Suivant"}

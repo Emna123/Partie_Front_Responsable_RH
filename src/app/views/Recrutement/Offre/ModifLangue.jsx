@@ -8,6 +8,9 @@ import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import authAxios from '../../../services/authAxios';
 import {indiceniveaulangue} from "./LangueIndex"
 import {suggestions} from "./LangueIndex"
+import 'bootstrap/dist/js/bootstrap';
+import './AppRecrutement.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 import {

@@ -14,7 +14,6 @@ import { green } from "@material-ui/core/colors";
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 
-import './AppRecrutement.css'
 import { withStyles } from "@material-ui/core/styles";
 
 import React, { Component, useEffect, useState, updateState } from 'react';
@@ -40,9 +39,12 @@ const useStyles = makeStyles(theme => ({
     root: {
         width: 900,
         borderColor: 'transparent',
+        background: 'white',
+
 
     },
     heading: {
+        backgroundColor: 'white',
         borderColor: 'transparent',
         fontSize: theme.typography.pxToRem(18),
         fontWeight: theme.typography.fontWeightRegular,
@@ -174,14 +176,14 @@ function EditExamen() {
 
     return (
 
-        <div style={{ marginBottom: '8%', backgroundColor: 'none', textAlign: 'center' }} className='container'>
-            <h5 style={{ textAlign: 'center', marginTop: '2%', fontSize: 18 }}>Créer un examen</h5>
-            <div className="card" style={{ width: "100%", textAlign: 'center', marginTop: '2%', padding: "0.9%", paddingTop: '0%', paddingBottom: '0%' }} >
+        <div style={{ marginBottom: '8%', background: 'white', textAlign: 'center' }} className='container'>
+            <h5 style={{background: 'white', textAlign: 'center', marginTop: '2%', fontSize: 18 }}>Créer un examen</h5>
+            <div className="card" style={{background: 'white', width: "100%", textAlign: 'center', marginTop: '2%', padding: "0.9%", paddingTop: '0%', paddingBottom: '0%' }} >
                 {exinfo.titre != "" ? (
                     <ExemainInfoEdit exinfo={exinfo} setexinfo={setexinfo}  ></ExemainInfoEdit>) : (<span></span>)}
             </div>
             <br></br><br></br><br></br>
-            <div className={classes.root} style={{ borderColor: 'transparent', textAlign: 'center', width: '75%' }} className='container' >
+            <div className={classes.root} style={{ borderColor: 'transparent', textAlign: 'center', width: '75%',background: 'white' }} className='container' >
                 <ExpansionPanel style={{
                 }}>
                     <ExpansionPanelSummary
@@ -384,22 +386,53 @@ function EditExamen() {
 
                         }
                         else {
+                            const verifte =  (repinfo) => {
+                             var test =false;
+                            for (var i=0;i<repinfo.length;i++)
+                            {
+                                  if(repinfo[i].chec !=false)
+                                  {
+                                      test=true
+                                  }
+                            }
+                                return test
+                            }
                             var test = false;
                             var indx = -1;
+                            var indx1 = -1;
                             var i = 0;
+                            var i1=0;
+                            var test1=false
+              
                             while (i < questinfo.length && test == false) {
-                                if (questinfo[i].question === "" || questinfo[i].repinfo == 0) {
-                                    test = true;
-                                    indx = i;
+                              if (questinfo[i].question === "" || questinfo[i].repinfo == 0) {
+                                test = true;
+                                indx = i;
+                              }
+                              i++
+                            }
+
+
+                            while (i1 < questinfo.length && test1 == false) {
+                            
+
+                                if (verifte(questinfo[i1].repinfo)==false) {
+                                  test1 = true;
+                                  indx1 = i1;
                                 }
-                                i++
-                            }
+                                i1++
+                              }
+
                             if (test == true) {
-                                setmes("le question numéro " + (indx + 1) + " dois avoir au moins une réponse , un question et une note ");
-                                setopenn(true)
-
+                              setmes("le question numéro " + (indx + 1) + " dois avoir au moins une réponse , un question et une note ");
+                              setopenn(true)
+              
                             }
-
+                           else if (test1 ==true ) {
+                              setmes("le question numéro " + (indx1 + 1) + " dois avoir au moins une réponse correcte  "+" ");
+                              setopenn(true)
+              
+                            }                            
                             else if ((questinfo.length + nb) < exinfo.nombreq) {
                                 setmes("Le nombre de questions est incorrect, veuillez ajouter au moins " + (exinfo.nombreq - (questinfo.length + nb)) + " questions ou modifier le nombre de questions à sélectionner.")
 
@@ -441,6 +474,7 @@ function EditExamen() {
                                 }
 
                                 const sendQusEx = async (res, i) => {
+                                    const response = await authAxios.post('Note_Question/PostNote_Question/' + oldquest[i].id + '/' + exinfo.id, { note_obtenue: 0 });
 
                                     return res.data
                                 }
@@ -474,7 +508,7 @@ function EditExamen() {
                                     }
                                 })
                                 console.log('this', questinfo)
-                                setOpen9(true)
+                              setOpen9(true)
                                 //window.location.href = 'http://localhost:3000/recrutement/offres'
 
                             }

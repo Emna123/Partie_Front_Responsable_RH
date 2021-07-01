@@ -176,11 +176,33 @@ const AppProfileCondidat = () => {
                   <div style={{ color: '#515A5A', fontSize: '13px', marginLeft: -10 }}>{value.prenom} {value.nom}</div >
                 </div>
                 <div className="mt-3" style={{ textAlign: 'center', lineHeight: 3 }}>
-                  <div style={{ color: '#999999', fontSize: '12px', marginTop: '-12px', marginLeft: -10 }}><Icon style={{ fontSize: "1rem" }}> person </Icon>{value.genre} ,{(new Date().getFullYear()) - (new Date(value.date_naissance).getFullYear())} ans ,{value.etat_matrimonial}</div >
+                  {value.genre != null ? (
+                    <div style={{ color: '#999999', fontSize: '12px', marginTop: '-12px', marginLeft: -10 }}><Icon style={{ fontSize: "1rem" }}> person </Icon>{value.genre} ,{(new Date().getFullYear()) - (new Date(value.date_naissance).getFullYear())} ans ,{value.etat_matrimonial}</div >
+                  ) : (
+                    <div style={{ color: '#999999', fontSize: '12px', marginTop: '-12px', marginLeft: -10 }}><Icon style={{ fontSize: "1rem" }}> person </Icon>Indéfini</div >
 
-                  <div style={{ color: '#999999', fontSize: '12px', marginTop: '-12px', marginLeft: -10 }}><Icon style={{ fontSize: "1rem", marginRight: 6 }}> call </Icon>{value.phoneNumber}</div >
+
+
+                  )}
+                  {value.phoneNumber != null ? (
+                    <div style={{ color: '#999999', fontSize: '12px', marginTop: '-12px', marginLeft: -10 }}><Icon style={{ fontSize: "1rem", marginRight: 6 }}> call </Icon>{value.phoneNumber}</div >
+                  ) : (
+                    <div style={{ color: '#999999', fontSize: '12px', marginTop: '-12px', marginLeft: -10 }}><Icon style={{ fontSize: "1rem", marginRight: 6 }}> call </Icon>Indéfini</div >
+
+
+
+
+                  )}
                   <div style={{ color: '#999999', fontSize: '12px', marginTop: '-12px', dispaly: 'block' }} ><Icon style={{ fontSize: "1rem", marginRight: 6, marginLeft: -10 }}> contact_mail </Icon>  {value.email} </div >
-                  <div style={{ color: '#999999', fontSize: '12px', marginTop: '-12px', marginLeft: -10 }}><Icon style={{ fontSize: "1rem" }}> room </Icon> <span style={{ fontSize: '12px' }}>{value.adresse}</span></div >
+                  {value.adresse != null ? (
+                    <div style={{ color: '#999999', fontSize: '12px', marginTop: '-12px', marginLeft: -10 }}><Icon style={{ fontSize: "1rem" }}> room </Icon> <span style={{ fontSize: '12px' }}>{value.adresse}</span></div >
+                  ) : (
+
+                    <div style={{ color: '#999999', fontSize: '12px', marginTop: '-12px', marginLeft: -10 }}><Icon style={{ fontSize: "1rem" }}> room </Icon> <span style={{ fontSize: '12px' }}>Indéfini</span></div >
+
+
+
+                  )}
                   {value.linkedin != null ? (<div style={{ color: '#999999', fontSize: '12px', marginTop: '-12px', marginLeft: -10 }}><Icon style={{ fontSize: "1rem", marginTop: 5 }}> linkedin</Icon> <span style={{ fontSize: '12px' }}>{value.linkedin.linkedin}</span></div >) : (<span></span>)}
 
 
@@ -222,7 +244,7 @@ const AppProfileCondidat = () => {
                       <div className="row " style={{ backgroundColor: '#F8F9F9', textAlign: "left", borderRadius: '30px', marginTop: '10px', padding: "10px", fontSize: '11px' }} className="d-flex justify-content-between"> <div>{v.commentaire} </div>
                         <div style={{ marginTop: '-5%' }} >
                           <IconButton aria-label="Delete" onClick={e => {
-                     
+
 
 
                             authAxios.delete('candidats/DeleteCommentaire/' + v.id)

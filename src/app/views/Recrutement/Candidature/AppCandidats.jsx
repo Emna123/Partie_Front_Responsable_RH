@@ -24,6 +24,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Chip from "@material-ui/core/Chip";
 import history from "history.js";
 import authAxios from '../../../services/authAxios';
+import BadgeAutocomplete from "../Candidat/BadgeAutocomplete";
+import Mots_Creux from "./listewords";
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" style={{ color: '#AED6F1' }} />;
 const checkedIcon = <CheckBoxIcon fontSize="small" style={{ color: '#AED6F1' }} />;
@@ -80,24 +82,31 @@ const AppCondidats = (props) => {
 
 
 
-  const verifWords = (str1, str2) => {
+  function verifWords(str1,str2) {
+
     var words1 = str1.split(/\s+/g),
       words2 = str2.split(/\s+/g),
       i,
       j;
-    var counts = 0;
+      console.log("tableau words 1",words1)
+    var counts=0;
     for (i = 0; i < words1.length; i++) {
       for (j = 0; j < words2.length; j++) {
-        if (words1[i].toLowerCase() == words2[j].toLowerCase() && isNaN(words1[i]) && isNaN(words2[j])
-          && words1[i].match(/[a-zA-Z]/) && words2[j].match(/[a-zA-Z]/)) {
-          counts++;
-          console.log('word ' + words1[i] + ' was found in both strings');
+        if (words1[i].normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() == words2[j].normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() && isNaN(words1[i]) && isNaN(words2[j])
+         && words1[i].match(/[a-zA-Z]/) && words2[j].match(/[a-zA-Z]/) ) {
+           if(Mots_Creux.includes(words1[i].normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase())!=true){
+            counts++;
+            console.log('word : "' + words1[i] + ' " was found in both strings');
+           }        
         }
       }
     }
+    console.log(counts)
     return counts;
-
   }
+
+
+
   const isexiste = (tab, value) => {
     var indice = -1;
     for (var i = 0; i < tab.length; i++) {
@@ -130,7 +139,7 @@ const AppCondidats = (props) => {
           element =>
             //element.titre.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().split(" ").includes(o.titre.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().split(" "))
             element.value >= o.value);
-        if (cmpts && verifWords(user.competence[index].titre, o.titre) > 0 && isexiste(founds2, o.id)) {
+        if (user.competence[index]!=null && cmpts && verifWords(user.competence[index].titre, o.titre) > 0 && isexiste(founds2, o.id)) {
           founds2.push(o.id)
         }
       })
@@ -268,10 +277,13 @@ const AppCondidats = (props) => {
 
   const noteexamen = (value) => {
     const url = window.location.href;
-
+var v ={note_totale:null,note_exam:null};
     for (var i = 0; i < value.examenresults.length; i++) {
       if (value.examenresults[i].examen.offre.id == url.substring(url.lastIndexOf('/') + 1, url.length)) {
-        return value.examenresults[i].note_totale
+        v.note_totale=value.examenresults[i].note_totale
+        v.note_exam=value.examenresults[i].note_exam
+
+        return v
       }
     }
   }
@@ -391,6 +403,13 @@ const AppCondidats = (props) => {
           setentrait(...[el.entrait])
           setsug(...[el.sug])
           setref(...[el.ref])
+          el.accepte.sort(function compare(a, b) {
+            if (noteexamen(a).note_totale/noteexamen(a).note_exam> noteexamen(b).note_totale/noteexamen(b).note_exam)
+               return -1;
+            if (noteexamen(a).note_totale/noteexamen(a).note_exam < noteexamen(b).note_totale/noteexamen(b).note_exam )
+               return 1;
+            return 0;
+          });
           setaccepte(...[el.accepte])
           setnonret(...[el.nonret])
         }
@@ -489,7 +508,7 @@ const AppCondidats = (props) => {
               </div>
             </Link>
 
-            <div style={{ textAlign: 'center' }} className="container">
+            <div style={{ textAlign: 'center' ,background:"white"}} className="container">
 
               <Fab color="primary" aria-label="Add" size="medium" className="col" style={{ margin: 5 }}
                 className={classes.button} onClick={e => {
@@ -507,7 +526,7 @@ const AppCondidats = (props) => {
                     setOffre(offre)
 
                     // alertmes, setalertmes
-                    authAxios.post('Candidature/SendAccept/' + value.idcand + '/' + offre.type_offre + '/' + offre.titre)
+                    authAxios.post('Candidature/SendAccept/' + value.idcand)
                     setopenn(true)
                   }
                   else if (offre.examen == null) {
@@ -545,8 +564,8 @@ const AppCondidats = (props) => {
                     offre.nontre = nontre
                     offre.ref = ref
                     setOffre(offre)
-
-                    authAxios.post('Candidature/SendRefuse/' + value.idcand + '/' + offre.type_offre + '/' + offre.titre)
+                        console.log('Candidature/SendRefuse/' + value.idcand )
+                    authAxios.post('Candidature/SendRefuse/' + value.idcand)
                     setopenn1(true)
                   }
                   else {
@@ -1203,7 +1222,7 @@ const AppCondidats = (props) => {
               <div style={{ color: '#999999', fontSize: 12, width: '100%', textAlign: 'center' }} className='t5'><Icon style={{ fontSize: "0.8vw" }}> border_color </Icon> Note examen :  &ensp;
 
           <small className="border-radius-4 bg-primary text-white px-2 py-2px ">
-                  {noteexamen(value)} / {constcaluclenotetotale(offre.examen.notes_questions)}                    </small>
+                  {noteexamen(value).note_totale} / {noteexamen(value).note_exam}                    </small>
                 <br></br>
               </div>
             </div>
@@ -1250,10 +1269,10 @@ const AppCondidats = (props) => {
   return (
     <div>
 
-      <div className="container" style={{ marginTop: 20, backgroundColor: '#FBFBFB' }}>
+      <div className="container" style={{ marginTop: 20, backgroundColor: '#FBFBFB',background:'white' }}>
         <div className="card profile-card-2 shadow-sm p-3 mb-5 bg-white rounded cc box " style={{ whiteSpace: 'nowrap' }}>
           <center>
-            <div style={{ display: 'inline' }}>
+            <div style={{ display: 'inline',background:'white' }}>
 
               <div className="autocomplete-wrapper " style={{ paddingLeft: '15px', paddingRight: '15px', marginTop: -10, marginBottom: 10 }}>
                 <Autocomplete
@@ -1317,7 +1336,7 @@ const AppCondidats = (props) => {
         </div>
       </div>
 
-      <div className="container" style={{ marginTop: 30, whiteSpace: 'nowrap', fontSize: '0.9vw' }}>
+      <div className="container" style={{ marginTop: 30, whiteSpace: 'nowrap', fontSize: '0.9vw',background:'white' }}>
 
         <ul>
           <li className="one" ><Link to={{ state: offre }} onClick={page1} style={{ color: '#522986', width: '16.66%' }}>En attente <span style={{ backgroundColor: '#0000FF', size: '0.9vw', color: '#FFFFFF', padding: 3 }}>{nontre.length}</span></Link></li>

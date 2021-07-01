@@ -19,6 +19,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Chip from "@material-ui/core/Chip";
 import history from "history.js";
 import authAxios from '../../../services/authAxios';
+import 'bootstrap/dist/js/bootstrap';
 
 const icon = <CheckBoxOutlineBlankIcon fontSize="small" style={{ color: '#AED6F1' }} />;
 const checkedIcon = <CheckBoxIcon fontSize="small" style={{ color: '#AED6F1' }} />;
@@ -127,10 +128,12 @@ const CheckData = (user, offreclicked) => {
       cmpts = user.competence.find(
         element => 
         //element.titre.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().split(" ").includes(o.titre.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().split(" "))
-        element.value  >= o.value);
+        element.value  >= o.value)
+        if(user.competence[index]!=null)
+       { console.log('ttttt',user.competence[index].titre)
       if (cmpts && verifWords(user.competence[index].titre,o.titre)>0 && isexiste(founds2,o.id) ) {
         founds2.push(o.id)
-      }
+      }}
     })
     //diplomes
     var founds3 = [];
@@ -208,21 +211,7 @@ const AppRecrutement = () => {
     d4.style.display = 'block'
     d2.style.display = 'none';
   };
-  /* GetCondidat('SignIn',this.state).then ((result)=>{
-     let responseJSON =result;
-     const { email, password } = this.state;
-
-       if (this.state.email !== responseJSON.e_mail || this.state.password !== responseJSON.mdp ) {
-         this.setState(
-          { hide:true} 
-         )
-      }
-      else{   this.props.loginWithEmailAndPassword({ ...this.state });    
-
-       }
-         
-      
-   });*/
+ 
   const [offre1, setOffre1] = useState([])
   const [of1, setOf1] = useState([])
   const [of2, setOf2] = useState([])

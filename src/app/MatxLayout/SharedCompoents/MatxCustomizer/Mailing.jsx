@@ -1,8 +1,8 @@
 
-//////////////////////////
 import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
 import axios from 'axios';
+import authAxios from '../../../services/authAxios';
 
 import {
   setLayoutSettings,
@@ -52,15 +52,8 @@ const Mailing = props => {
   const sendemail = (event) => {
     event.preventDefault();
 
-console.log(email,sujet,message)
-const apiUrl='https://localhost:44392/api';
-const authAxios=axios.create({
-  baseURL:apiUrl,
-  headers:{
-    Authorization:`Bearer ${localStorage.getItem('access_token')}`
-  }
-})
 authAxios.post('/Candidature/SendEmail/'+email,{Subject:sujet,Content:message})
+console.log('/Candidature/SendEmail/'+email)
 setEmail("");
 setSujet("")
 setMessage("")

@@ -84,7 +84,7 @@ class CustomizedDialogs extends React.Component {
           open={this.props.open}
         >
           <DialogTitle id="customized-dialog-title" onClose={this.handleClose} >
-            <div style={{ fontSize: '14px', marginTop: '1%' }}><Icon style={{ fontSize: '13px', margin: '0%' }}> warning</Icon> Un problème est survenu lors de la création de l'examen !</div >
+            <div style={{ fontSize: '14px', marginTop: '1%',marginRight:'60px' }}><Icon style={{ fontSize: '13px', margin: '0%' }}> warning</Icon> Un problème est survenu lors de la création de l'examen !</div >
           </DialogTitle>
           <DialogContent dividers>
 

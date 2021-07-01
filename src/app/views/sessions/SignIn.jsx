@@ -52,7 +52,7 @@ class SignIn extends Component {
         'Content-type':'application/json'},rejectUnauthorized: false,
         body: JSON.stringify({
           Email:this.state.email,
-          mdp:this.state.password
+           password:this.state.password
         })
         }).then(data => data.json())
           .then((res)=>{
@@ -69,7 +69,7 @@ class SignIn extends Component {
         localStorage.setItem('UserEmail',"") ;
         localStorage.setItem('UserEmail',res.user.email) ;
         localStorage.setItem('UserPassword',"") ;
-        localStorage.setItem('UserPassword',res.user.mdp) ;
+        localStorage.setItem('UserPassword',res.user.password) ;
         localStorage.setItem('refresh_token',"") ;
         localStorage.setItem('refresh_token',res.refreshtoken) ;
 

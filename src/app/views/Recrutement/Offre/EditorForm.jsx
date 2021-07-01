@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { RichTextEditor, Breadcrumb } from "matx";
 import { TextField, InputAdornment, IconButton, Button, Icon } from "@material-ui/core";
 
+import '../AppOffre.css'
 
 
 class EditorForm extends Component {
@@ -50,7 +51,7 @@ class EditorForm extends Component {
           content={this.state.content}
           handleContentChange={this.handleContentChange}
           placeholder="insérer texte ici..."
-        />
+          />
         <br></br>
         <Button
 
@@ -58,9 +59,9 @@ class EditorForm extends Component {
           color="primary"
           type="submit"
           onClick={e => {  
-            
-         
-            
+         console.log('content',this.state.content)
+            if(this.state.content !="" && this.state.content!='<p><br></p>')
+            { 
             this.props.setdescription(this.state.content); 
         console.log(this.props.description)
             console.log(this.props.description);
@@ -69,7 +70,8 @@ class EditorForm extends Component {
             document.getElementById("iddisc3").style.display = "block"
             document.getElementById("iddisc1").style.display = "block"
             document.getElementById("iddisc1").innerHTML ='<div style=background-color:#F2F3F4;width:80%;padding:3%; border-radius:5px;>'+ this.state.content+'</div>' ;
-
+          this.props.setdisb(false)}
+        else (this.props.setdisb(true))
           }}
         >
           ENREGISTRER
@@ -85,7 +87,7 @@ class EditorForm extends Component {
             <Icon style={{ fontSize: "1rem", color: '#FFFFFF' }}>clear</Icon>
           </IconButton>
           </div>
-      <div id="iddisc1" style={{display: this.props.description === "" ? 'none' : 'block' }}>
+      <div id="iddisc1" dangerouslySetInnerHTML={{__html:this.state.content}} style={{display: this.props.description === "" ? 'none' : 'block' }}>
       </div>
       <div id="iddisc3" style={{display: this.props.description === "" ? 'none' : 'block' }}>
       <Button

@@ -100,6 +100,7 @@ this.setState({max:this.state.max})
 
     authAxios.get('Candidature/getAllCandidatures').then((res) => {
       console.log(res.data)
+      
       for (var i = 0; i < res.data.length; i++) {
         date.push(res.data[i].date_candidature)
         console.log("dates", new Date(res.data[i].date_candidature).getMonth(), new Date(res.data[i].date_candidature))
@@ -114,9 +115,10 @@ this.setState({max:this.state.max})
             this.setState({rejete: this.state.rejete+1})
             break;
         }
+
         if (new Date(res.data[i].date_candidature).getFullYear() == new Date().getFullYear() ||(new Date(res.data[i].date_candidature).getMonth()>new Date().getMonth() && new Date(res.data[i].date_candidature).getFullYear() == new Date().getFullYear()-1 ) ) { 
 
-        switch (new Date(res.data[i].date_candidature).getMonth()) {
+          switch (new Date(res.data[i].date_candidature).getMonth()+1) {
           case 1:
             this.setState({jan:this.state.jan+1})
             break;
@@ -156,8 +158,10 @@ this.setState({max:this.state.max})
             break;
 
         }
+        
 
       }
+      console.log('juin',this.state.juin,res.data)
       }
       this.max();
       this.min();

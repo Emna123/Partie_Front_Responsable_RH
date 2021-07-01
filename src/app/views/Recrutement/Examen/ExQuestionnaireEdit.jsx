@@ -11,6 +11,7 @@ import { withStyles } from "@material-ui/core/styles";
 import FormHelperText from '@material-ui/core/FormHelperText';
 import EXReponseEdit from "./ExReponseEdit";
 import axios from 'axios';
+import './AppRecrutement.css'
 
 import {
   Button,
@@ -191,8 +192,8 @@ class EXQuestionnaireEdit extends Component {
     return (
       <div>
         <ul style={{ marginTop: '-9%' }}>
-          <li ><a href="#" onClick={this.page2} style={{ color: 'black', marginLeft: '-4%', fontSize: "13px" }}>Question <Icon style={{ fontSize: "1rem", color: " #7467ef", margin: 5, marginBottom: -3 }}> help_outline </Icon>  </a></li>
-          <li ><a href="#" onClick={this.page4} style={{ color: 'black', marginLeft: '28%', fontSize: "13px" }}>Réponse <Icon style={{ fontSize: "1rem", color: " #7467ef", margin: 5, marginBottom: -3 }}> offline_pin </Icon> </a></li>
+          <li style={{listStyle:'none'}}><a href="#" onClick={this.page2} style={{ color: 'black', marginLeft: '-4%', fontSize: "13px" }}>Question <Icon style={{ fontSize: "1rem", color: " #7467ef", margin: 5, marginBottom: -3 }}> help_outline </Icon>  </a></li>
+          <li style={{listStyle:'none'}}><a href="#" onClick={this.page4} style={{ color: 'black', marginLeft: '28%', fontSize: "13px" }}>Réponse <Icon style={{ fontSize: "1rem", color: " #7467ef", margin: 5, marginBottom: -3 }}> offline_pin </Icon> </a></li>
           <hr id={this.props.idh} className='hr22' style={{ color: '#6024CF' }} />
         </ul>
 

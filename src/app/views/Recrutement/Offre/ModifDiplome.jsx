@@ -5,6 +5,8 @@ import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import { makeStyles } from "@material-ui/core/styles";
 import authAxios from '../../../services/authAxios';
+import './AppRecrutement.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
